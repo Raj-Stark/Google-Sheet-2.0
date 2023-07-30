@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Google Sheet</title>
+  </head>
+  <body>
+    <div class="page-actions-cont">
+      <div class="page-action">Home</div>
+      <div class="page-action">File</div>
+      <div class="page-action">Insert</div>
+      <div class="page-action">Layout</div>
+      <div class="page-action">Help</div>
+    </div>
+    <div class="cellprops-actions-cont">
+      <span class="material-symbols-outlined"> content_copy </span>
+
+      <span class="material-symbols-outlined"> content_cut </span>
+
+      <span class="material-symbols-outlined"> content_paste </span>
+      <select class="font-family-prop">
+        <option value="monospace">Monospace</option>
+        <option value="sans-serif">Sans-Serif</option>
+        <option value="fantasy">Fantasy</option>
+        <option value="cursive">Cursive</option>
+      </select>
+      <select class="font-size-prop">
+        <option value="14">14</option>
+        <option value="16">16</option>
+        <option value="18">18</option>
+        <option value="20">20</option>
+      </select>
+      <span class="material-symbols-outlined bold"> format_bold </span>
+
+      <span class="material-symbols-outlined italic"> format_italic </span>
+
+      <span class="material-symbols-outlined underline">
+        format_underlined
+      </span>
+      <span class="material-symbols-outlined alignment left">
+        format_align_left
+      </span>
+      <span class="material-symbols-outlined alignment center">
+        format_align_center
+      </span>
+      <span class="material-symbols-outlined alignment right">
+        format_align_right
+      </span>
+
+      <div class="color-prop">
+        <span class="material-symbols-outlined text-icon">
+          format_color_text
+        </span>
+        <input type="color" class="font-color-prop" />
+      </div>
+      <div class="color-prop">
+        <span class="material-symbols-outlined bg-icon"> colors </span>
+        <input type="color" class="BGcolor-prop" />
+      </div>
+    </div>
+    <div class="formula-actions-cont">
+      <input type="text" readonly class="address-bar" />
+      <img
+        class="formula-icon"
+        src="https://img.icons8.com/ios/50/000000/formula-fx.png"
+      />
+      <input type="text" class="formula-bar" />
+    </div>
+    <div class="grid-cont">
+      <div class="top-left-dummy-box"></div>
+
+      <div class="cells-cont">
+        <div class="address-col-cont"></div>
+      </div>
+
+      <div class="address-row-cont"></div>
+    </div>
+    <div class="sheet-actions-cont">
+      <div class="sheet-add-icon">
+        <span class="material-symbols-outlined"> post_add </span>
+      </div>
+
+      <div class="sheets-folder-cont">
+        <div class="sheet-folder">Sheet 1</div>
+      </div>
+    </div>
+    <script src="grid.js"></script>
+    <script src="cellProperties.js"></script>
+  </body>
+</html>
