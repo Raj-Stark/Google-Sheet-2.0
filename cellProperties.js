@@ -12,6 +12,10 @@ for (let i = 0; i < rows; i++) {
       fontColor: "#000000",
       BGcolor: "#000000",
       alignment:"left",
+      value:"",
+      formula:"",
+      children:[],
+      cellName:""
     };
 
     rowSheet.push(cellProps);
@@ -155,7 +159,9 @@ alignment.forEach((item) => {
       leftAlign.style.backgroundColor = inActiveColor;
       centerAlign.style.backgroundColor = inActiveColor;
     }
-    console.log(cellDB);
+
+
+   
   });
 });
 
@@ -166,12 +172,11 @@ const allCell = document.querySelectorAll(".singleCell");
 allCell.forEach((item)=>{
 
   item.addEventListener('click' , (e)=>{
-    console.log(e.target);
-
     const addressValue = addressBar.value;
 
     const [rowId, columnId] = deocodeRowIdAndColumnId(addressValue);
     const cellDB = sheetDB[rowId][columnId];
+    cellDB.cellName = addressValue;
 
 
     bold.style.backgroundColor = cellDB.bold ? activeColor : inActiveColor;
@@ -207,8 +212,10 @@ allCell.forEach((item)=>{
       rightAlign.style.backgroundColor  = inActiveColor;
     }
 
-  console.log(cellDB);
 
+    const formulaBar = document.querySelector(".formula-bar");
+    formulaBar.value = cellDB.formula;
+    allCell.value = cellDB.value;
 
   })
 
@@ -234,4 +241,3 @@ const deocodeRowIdAndColumnId = (address) => {
   return [rowId, columnId];
 };
 
-console.log(sheetDB);

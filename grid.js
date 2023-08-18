@@ -35,7 +35,7 @@ for(let i = 0; i < rows; i++){
     for(let j = 0; j < col; j++){
         const singleCell = document.createElement("div");
         singleCell.setAttribute("class" ,"singleCell");
-        singleCell .innerText = count++;
+        // singleCell .innerText = count++;
         singleCell.setAttribute("contenteditable",true)
         singleCell.setAttribute("spellcheck" , false)
         // ! Attribue For cell storage identification
