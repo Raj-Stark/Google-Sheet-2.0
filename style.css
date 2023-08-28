@@ -94,6 +94,7 @@ background-color: #ecf0f1;
   width: calc(100vw - 2vw);
   display: flex;
   align-items: center;
+  overflow: auto;
 }
 
 .sheet-add-icon {
@@ -104,9 +105,28 @@ background-color: #ecf0f1;
 
 .sheet-folder{
   margin-left: 0.5rem;
-  text-decoration: underline;
-  font-weight: 600;
+  /* text-decoration: underline; */
+  font-weight: 400;
   text-decoration-thickness: 3px;
+  height: 80%;
+  margin: 0 1.5rem 0 0;
+
+}
+
+.sheet-content{
+  cursor: pointer;
+  width: 5rem;
+  background-color: #218c74;
+  padding: 0.2rem;
+  text-align: center;
+  color: #fff;
+  -webkit-box-shadow: -8px -1px 43px -20px rgba(0,0,0,0.75);
+  -moz-box-shadow: -8px -1px 43px -20px rgba(0,0,0,0.75);
+  box-shadow: -8px -1px 43px -20px rgba(0,0,0,0.75);
+}
+
+.sheet-actions-cont{
+  cursor: pointer;
 }
 
 
@@ -205,3 +225,4 @@ background-color: #ecf0f1;
       width: 100%;
 
   }
+

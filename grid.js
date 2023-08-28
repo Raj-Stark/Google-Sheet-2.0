@@ -59,6 +59,3 @@ function addListnerForAddressDisplay(cell , i , j){
     })
 }
 
-// ! By default click on First cell 
-const firstCell = document.querySelector(".singleCell");
-firstCell.click();

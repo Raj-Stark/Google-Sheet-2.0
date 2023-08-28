@@ -1,15 +1,6 @@
-const collectedGraphComponentMatrix = [];
-let graphComponentMatrix = [];
+const isGraphCyclicTracePath = async(graphComponentMatrix, cycleResponse) => {
+  const [srcRow, srcCol] = cycleResponse;
 
-// for (let i = 0; i < rows; i++) {
-//   const row = [];
-//   for (let j = 0; j < col; j++) {
-//     row.push([]);
-//   }
-//   graphComponentMatrix.push(row);
-// }
-
-const isGraphCyclic = (graphComponentMatrix) => {
   // * Dependency Array
   const visited = []; // * Node Visit Trace
   const DFSvisited = []; // * Stack Visit Trace
@@ -37,14 +28,36 @@ const isGraphCyclic = (graphComponentMatrix) => {
         );
 
         if (response) {
-          return [i,j];
+          return true;
         }
       }
     }
   }
 
-  return null;
+  const response = await DFScycleDetectionTracePath(
+    graphComponentMatrix,
+    srcRow,
+    srcCol,
+    visited,
+    DFSvisited
+  );
+
+  if (response) {
+    return Promise.resolve(true);
+  }
+
+  return Promise.resolve(false);
 };
+
+
+
+const colorPromise = ()=>{
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            resolve();
+        },1000)
+    })
+}
 
 // * Start -> vis(TRUE) dfsVis(TRUE)
 //* End -> dfsVis(FALSE)
@@ -53,7 +66,7 @@ const isGraphCyclic = (graphComponentMatrix) => {
 //* Return -> True/False
 //* True -> cyclic, False -> Not cyclic
 
-const DFScycleDetection = (
+const DFScycleDetectionTracePath = async(
   graphComponentMatrix,
   srcRow,
   srcCol,
@@ -63,6 +76,14 @@ const DFScycleDetection = (
   visited[srcRow][srcCol] = true;
   DFSvisited[srcRow][srcCol] = true;
 
+
+  const cellUI = document.querySelector(
+    `.singleCell[rowid="${srcRow}"][columnid="${srcCol}"]`
+  );
+
+  cellUI.style.backgroundColor = "lightblue";
+  await colorPromise();
+
   for (
     let children = 0;
     children < graphComponentMatrix[srcRow][srcCol].length;
@@ -71,7 +92,7 @@ const DFScycleDetection = (
     const [childRID, childCID] = graphComponentMatrix[srcRow][srcCol][children];
 
     if (!visited[childRID][childCID]) {
-      const response = DFScycleDetection(
+      const response = await DFScycleDetectionTracePath(
         graphComponentMatrix,
         childRID,
         childCID,
@@ -79,14 +100,24 @@ const DFScycleDetection = (
         DFSvisited
       );
       if (response) {
-        return true;
+        cellUI.style.backgroundColor = "transparent";
+        await colorPromise();
+        return Promise.resolve(true);
       }
     } else if (visited[childRID][childCID] && DFSvisited[childRID][childCID]) {
+        const cyclicCell = document.querySelector(
+            `.singleCell[rowid="${childRID}"][columnid="${childCID}"]`
+          );
+          cyclicCell.style.backgroundColor = "lightsalmon";
+          await colorPromise();
+          cyclicCell.style.backgroundColor = "transparent";
+          cellUI.style.backgroundColor = "transparent";
+          await colorPromise();
       return true;
     }
   }
 
   DFSvisited[srcRow][srcCol] = false;
 
-  return false;
+  return Promise.resolve(false);
 };
