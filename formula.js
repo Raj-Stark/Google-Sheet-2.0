@@ -1,7 +1,7 @@
 for (let i = 0; i < rows; i++) {
   for (let j = 0; j < col; j++) {
     const cellUI = document.querySelector(
-      `.singleCell[rowid="${i}"][columnid="${j}"]`
+      `.singleCell[rowid="${i}"][columnid="${j}"]`  
     );
     cellUI.addEventListener("blur", () => {
       const addressValue = addressBar.value;
@@ -10,7 +10,7 @@ for (let i = 0; i < rows; i++) {
       const enteredData = cellUI.innerText;
 
       // ! If User tries to modify cell data manually
-      if (Number(enteredData) !== Number(cellDB.value)) {
+      if (Number(enteredData) !== Number(cellDB.value)) { 
         console.log("This runs", enteredData, cellDB.value);
         cellDB.value = enteredData;
         removeChild(cellDB.formula);
@@ -42,7 +42,12 @@ formulaBar.addEventListener("keydown", async (e) => {
     const isCyclic =  isGraphCyclic(graphComponentMatrix);
 
     if(isCyclic){
-      alert("Your Formula is Cyclic");
+      // alert("Your Formula is Cyclic");
+      let response = confirm("Your Formula is Cyclic! Do you want to trace your path ?");
+      while(response === true){
+        await isGraphCyclicTracePath(graphComponentMatrix , isCyclic)
+        response = confirm("Your Formula is Cyclic! Do you want to trace your path ?");
+      }
       removeChildFromGraphComponent(formulaBar.value , addressValue);
       return;
     }

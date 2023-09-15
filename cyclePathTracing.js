@@ -16,23 +16,23 @@ const isGraphCyclicTracePath = async(graphComponentMatrix, cycleResponse) => {
     DFSvisited.push(DFSvisitedRow);
   }
 
-  for (let i = 0; i < rows; i++) {
-    for (let j = 0; j < col; j++) {
-      if (!visited[i][j]) {
-        const response = DFScycleDetection(
-          graphComponentMatrix,
-          i,
-          j,
-          visited,
-          DFSvisited
-        );
+  // for (let i = 0; i < rows; i++) {
+  //   for (let j = 0; j < col; j++) {
+  //     if (!visited[i][j]) {
+  //       const response = DFScycleDetection(
+  //         graphComponentMatrix,
+  //         i,
+  //         j,
+  //         visited,
+  //         DFSvisited
+  //       );
 
-        if (response) {
-          return true;
-        }
-      }
-    }
-  }
+  //       if (response) {
+  //         return true;
+  //       }
+  //     }
+  //   }
+  // }
 
   const response = await DFScycleDetectionTracePath(
     graphComponentMatrix,
